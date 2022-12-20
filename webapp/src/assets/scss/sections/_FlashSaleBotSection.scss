@@ -1,0 +1,56 @@
+.flash-bot {
+    display: flex;
+    align-items: center;
+    width: 66%;
+    margin-left: 17%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    
+    .container2 {
+        background-color: #BBBBBB;
+        display: inline-block;
+        justify-content: space-between;
+        width: 50%;
+        height: 860px;
+        margin-left: auto;
+        
+        h1 {
+            display: block;
+            text-align: center;
+            position: relative;
+            top: 320px;
+            color: $color-white;
+            font-weight: 700;
+            font-size: 45px;
+        }
+
+        .flash-botBtn {
+            display: inline-block;
+            align-items: center;
+            margin-left: 38%;
+            position: relative;
+            top: 350px;
+            font-size: 20px;
+        }
+
+        .btn-white {
+            display: flex;
+            align-items: center;
+            height: 60px;
+
+            &:hover {
+                background-color: $color-dark;
+                color: $color-white;
+            }
+        }
+    }
+
+    .flash-bot-product {
+        width: 40%;
+
+        .flash-product {
+            position: relative;
+            margin-left: 20%;
+        }
+    }
+}
