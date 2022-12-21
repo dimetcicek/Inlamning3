@@ -12,24 +12,26 @@ import ShoppingCartView from './views/ShoppingCartView';
 import NotFoundView from './views/NotFoundView';
 import FooterSection from './sections/FooterSection';
 import MainMenuSection from './sections/MainMenuSection';
-
+import ProductProvider from './contexts/ProductContext';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<HomeView />} />
-        <Route path='/categories' element={<CategoriesView />} />
-        <Route path='/products' element={<ProductsView />} />
-        <Route path='/products/:name' element={<ProductDetailsView />} />
-        <Route path='/contacts' element={<ContactsView />} />
-        <Route path='/search' element={<SearchView />} />
-        <Route path='/compare' element={<CompareView />} />
-        <Route path='/wishlist' element={<WishListView />} />
-        <Route path='/shoppingcart' element={<ShoppingCartView />} />
-        <Route path='*' element={<NotFoundView />} />
-      </Routes>
-    </BrowserRouter>
+    <ProductProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<HomeView />} />
+          <Route path='/categories' element={<CategoriesView />} />
+          <Route path='/products' element={<ProductsView />} />
+          <Route path='/products/:name' element={<ProductDetailsView />} />
+          <Route path='/contacts' element={<ContactsView />} />
+          <Route path='/search' element={<SearchView />} />
+          <Route path='/compare' element={<CompareView />} />
+          <Route path='/wishlist' element={<WishListView />} />
+          <Route path='/shoppingcart' element={<ShoppingCartView />} />
+          <Route path='*' element={<NotFoundView />} />
+        </Routes>
+      </BrowserRouter>
+    </ProductProvider>
   );
 }
 

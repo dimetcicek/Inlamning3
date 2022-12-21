@@ -1,10 +1,10 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { ProductItem } from '../models/ProductModels'
+import { Product } from '../models/ProductModel'
 
 
 interface ProductCardType {
-    product: ProductItem
+    product: Product
 }
 
 const ProductCard: React.FC<ProductCardType> = ({product}) => {
@@ -41,11 +41,9 @@ const ProductCard: React.FC<ProductCardType> = ({product}) => {
                 <p className="card-category">{product.category}</p>
                 <h5 className="card-title">{product.name}</h5>
                 <p className="card-rating">
-                    <i className="fa-sharp fa-solid fa-star"></i>
-                    <i className="fa-sharp fa-solid fa-star"></i>
-                    <i className="fa-sharp fa-solid fa-star"></i>
-                    <i className="fa-sharp fa-solid fa-star"></i>
-                    <i className="fa-sharp fa-solid fa-star"></i>
+                    {
+                        [...Array(product.rating)].map(i => <i className="fa-sharp fa-solid fa-star" />)
+                    }
                 </p>
                 <p className="card-price">{product.price}</p>
             </div>

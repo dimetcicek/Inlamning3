@@ -1,10 +1,10 @@
 import React from 'react'
 import ProductCard from '../components/ProductCard'
-import { ProductItem } from '../models/ProductModels'
+import { Product } from '../models/ProductModel'
 
 interface ProductGridType {
   title: string
-  products: ProductItem[]
+  products: Product[]
 }
 
 const ProductGridSection: React.FC<ProductGridType> = ({title, products}) => {

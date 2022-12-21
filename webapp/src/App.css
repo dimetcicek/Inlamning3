@@ -560,10 +560,10 @@ footer {
 .flash-top .container1 .flash-topBtn {
   display: inline-block;
   align-items: center;
-  margin-left: 38%;
   position: relative;
   top: 350px;
   font-size: 20px;
+  margin-left: 32%;
 }
 .flash-top .container1 .btn-white {
   display: flex;
@@ -610,7 +610,7 @@ footer {
 .flash-bot .container2 .flash-botBtn {
   display: inline-block;
   align-items: center;
-  margin-left: 38%;
+  margin-left: 32%;
   position: relative;
   top: 350px;
   font-size: 20px;

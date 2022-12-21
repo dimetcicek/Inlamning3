@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import BannerSection from '../sections/BannerSection'
 import FlashSaleBotSection from '../sections/FlashSaleBotSection'
 import FlashSaleTopSection from '../sections/FlashSaleTopSection'
@@ -7,28 +7,24 @@ import MainMenuSection from '../sections/MainMenuSection'
 import ProductGridSection from '../sections/ProductGridSection'
 import ShowcaseSection from '../sections/ShowcaseSection'
 import SiteInfoSection from '../sections/SiteInfoSection'
+import { IProductContext, ProductContext } from '../contexts/ProductContext'
+import { Product } from '../models/ProductModel'
 
 
 const HomeView: React.FC = () => {
+  const { products, getAll } = React.useContext(ProductContext) as IProductContext
+  const [featuredProducts, setFeaturedProducts] = useState<Product[]>([])
+  const [flashSaleTopProducts, setFlashSaleTopProducts] = useState<Product[]>([])
+  const [flashSaleBotProducts, setFlashSaleBotProducts] = useState<Product[]>([])
 
+  useEffect(() => {
+    if (!products || products.length === 0)
+      getAll()
 
-  const [featuredProducts, setFeaturedProducts] = useState ([
-    { title: "", id: 1, name: "Modern Brown Blouse", category: "Fashion", price: "$35.00", rating: 5, img: "https://images.pexels.com/photos/9604177/pexels-photo-9604177.jpeg?auto=compress&cs=tinysrgb&w=1600" },
-    { title: "", id: 2, name: "Modern Brown Blouse", category: "Fashion", price: "$35.00", rating: 5, img: "https://images.pexels.com/photos/6311615/pexels-photo-6311615.jpeg?auto=compress&cs=tinysrgb&w=1600" },
-    { title: "", id: 3, name: "Modern Brown Blouse", category: "Fashion", price: "$35.00", rating: 5, img: "https://images.pexels.com/photos/10512915/pexels-photo-10512915.jpeg?auto=compress&cs=tinysrgb&w=1600" },
-    { title: "", id: 4, name: "Modern Brown Blouse", category: "Fashion", price: "$35.00", rating: 5, img: "https://images.pexels.com/photos/1926769/pexels-photo-1926769.jpeg?auto=compress&cs=tinysrgb&w=1600" },
-    { title: "", id: 5, name: "Modern Brown Blouse", category: "Fashion", price: "$35.00", rating: 5, img: "https://images.pexels.com/photos/1926769/pexels-photo-1926769.jpeg?auto=compress&cs=tinysrgb&w=1600" },
-    { title: "", id: 6, name: "Modern Brown Blouse", category: "Fashion", price: "$35.00", rating: 5, img: "https://images.pexels.com/photos/1926769/pexels-photo-1926769.jpeg?auto=compress&cs=tinysrgb&w=1600" },
-    { title: "", id: 7, name: "Modern Brown Blouse", category: "Fashion", price: "$35.00", rating: 5, img: "https://images.pexels.com/photos/1926769/pexels-photo-1926769.jpeg?auto=compress&cs=tinysrgb&w=1600" },
-    { title: "", id: 8, name: "Modern Brown Blouse", category: "Fashion", price: "$35.00", rating: 5, img: "https://images.pexels.com/photos/1926769/pexels-photo-1926769.jpeg?auto=compress&cs=tinysrgb&w=1600" },
-  ])
-  const [topProducts, setTopProducts] = useState ([
-    { title: "", id: 1, name: "Modern Brown Blouse", category: "Fashion", price: "$35.00", rating: 5, img: "https://images.pexels.com/photos/9604177/pexels-photo-9604177.jpeg?auto=compress&cs=tinysrgb&w=1600" },
-    { title: "", id: 2, name: "Modern Brown Blouse", category: "Fashion", price: "$35.00", rating: 5, img: "https://images.pexels.com/photos/6311615/pexels-photo-6311615.jpeg?auto=compress&cs=tinysrgb&w=1600" },
-    { title: "", id: 3, name: "Modern Brown Blouse", category: "Fashion", price: "$35.00", rating: 5, img: "https://images.pexels.com/photos/10512915/pexels-photo-10512915.jpeg?auto=compress&cs=tinysrgb&w=1600" },
-    { title: "", id: 4, name: "Modern Brown Blouse", category: "Fashion", price: "$35.00", rating: 5, img: "https://images.pexels.com/photos/1926769/pexels-photo-1926769.jpeg?auto=compress&cs=tinysrgb&w=1600" },
-  ])
-
+      setFeaturedProducts(products.filter(p => p.rating === 5.0))
+      setFlashSaleTopProducts(products.filter(p => p.price < 50))
+      setFlashSaleBotProducts(products.filter(p => p.price > 50 && p.price < 100))
+  }, [getAll, products])
 
   return (
     <>
@@ -36,10 +32,10 @@ const HomeView: React.FC = () => {
       <MainMenuSection />
     </div>
       <ShowcaseSection />
-      <ProductGridSection title="Featured Products" products={featuredProducts} />
+      <ProductGridSection title="HIGHEST RATED PRODUCTS" products={featuredProducts} />
       <BannerSection />
-      <FlashSaleTopSection />
-      <FlashSaleBotSection />
+      <FlashSaleTopSection offer="UNDER 50" products={flashSaleTopProducts} />
+      <FlashSaleBotSection offer="UNDER 100" products={flashSaleBotProducts} />
       <SiteInfoSection />
       <FooterSection />
     </> 
